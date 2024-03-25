@@ -8,12 +8,14 @@ import java.util.ArrayList;
 public class Product {
     String name;
     Url productPageUrl;
-    ArrayList<Page>  reviewPages = new ArrayList<>();
+    ArrayList<Page> pages = new ArrayList<>();
 
     Product(String text) {
         this.productPageUrl = new Url(text);
         try {
             this.productPageUrl.checkConnection();
+            this.setName();
+            this.getPages();
         } catch (UrlRedirectException | UrlErrorException e) {
             System.out.println("Error adding product");
             //add exception??
@@ -24,8 +26,8 @@ public class Product {
         this.name = Scraper.getTitle(productPageUrl);
     }
 
-    void addReviewPages(){
-        this.reviewPages.add(new Page(productPageUrl));
+    void getPages(){
+        this.pages.add(new Page(productPageUrl));
 
         boolean morePagesAvailable = true;
         Url nextPageUrl = productPageUrl;
@@ -33,7 +35,7 @@ public class Product {
         while (morePagesAvailable){
             try {
                 nextPageUrl = Scraper.getNextUrl(nextPageUrl);
-                this.reviewPages.add(new Page(nextPageUrl));
+                this.pages.add(new Page(nextPageUrl));
 
             } catch (NoMoreReviewPagesException e) {
                 morePagesAvailable = false;

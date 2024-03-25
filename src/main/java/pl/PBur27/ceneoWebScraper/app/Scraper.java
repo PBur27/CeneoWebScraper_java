@@ -2,9 +2,13 @@ package pl.PBur27.ceneoWebScraper.app;
 
 
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import pl.PBur27.ceneoWebScraper.product.Review;
 import pl.PBur27.ceneoWebScraper.product.Url;
 import pl.PBur27.ceneoWebScraper.product.UrlErrorException;
 import pl.PBur27.ceneoWebScraper.product.UrlRedirectException;
+
+import java.util.ArrayList;
 
 
 public class Scraper {
@@ -39,7 +43,10 @@ public class Scraper {
         return u.response.title();
     }
 
-    public static Element getContent(Url u) {
-        return u.response.body();
+    public static Elements getReviews(Url u) {
+
+        return u.response.select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *");
+
+
     }
 }
