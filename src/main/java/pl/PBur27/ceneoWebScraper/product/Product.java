@@ -1,15 +1,14 @@
 package pl.PBur27.ceneoWebScraper.product;
 
-import pl.PBur27.ceneoWebScraper.app.Url;
-import pl.PBur27.ceneoWebScraper.app.UrlErrorException;
-import pl.PBur27.ceneoWebScraper.app.UrlRedirectException;
+import pl.PBur27.ceneoWebScraper.app.NoMoreReviewPagesException;
+import pl.PBur27.ceneoWebScraper.app.Scraper;
 
 import java.util.ArrayList;
 
 public class Product {
     String name;
     Url productPageUrl;
-    ArrayList<Page>  reviewPages = new ArrayList<Page>();
+    ArrayList<Page>  reviewPages = new ArrayList<>();
 
     Product(String text) {
         this.productPageUrl = new Url(text);
@@ -22,14 +21,28 @@ public class Product {
     }
 
     void setName(){
+        this.name = Scraper.getTitle(productPageUrl);
+    }
 
-        this.name = productPageUrl.getTitle();
+    void addReviewPages(){
+        this.reviewPages.add(new Page(productPageUrl));
+
+        boolean morePagesAvailable = true;
+        Url nextPageUrl = productPageUrl;
+
+        while (morePagesAvailable){
+            try {
+                nextPageUrl = Scraper.getNextUrl(nextPageUrl);
+                this.reviewPages.add(new Page(nextPageUrl));
+
+            } catch (NoMoreReviewPagesException e) {
+                morePagesAvailable = false;
+            }
+        }
 
     }
 
-    void addFirstReviewPage(){
-        reviewPages.add(new Page(this.productPageUrl));
-    }
+
 
 
 }
