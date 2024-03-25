@@ -17,6 +17,7 @@ public class Page {
     }
 
     public void getReviews(){
-        this.reviews = Scraper.getReviews(this.url);
+        int reviewsOnPage = S;
+
     }
 }

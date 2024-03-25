@@ -43,7 +43,19 @@ public class Scraper {
         return u.response.title();
     }
 
-    public static Elements getReviews(Url u) {
+    public static ArrayList<Review> getReviews(Url u) {
+
+        ArrayList<Review> reviews;
+        int reviewsOnPage = u.response
+                .select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *")
+                .size();
+
+        for (int i = 0; i < reviewsOnPage + 1; i++) {
+
+            reviews.add(u.response.select())
+
+        }
+
 
         return u.response.select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *");
 
