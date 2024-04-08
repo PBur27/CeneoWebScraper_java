@@ -13,11 +13,7 @@ public class Page {
     // to be scrapped
     public Page(Url pageUrl) {
         this.url = pageUrl;
-        this.getReviews();
+        this.reviews = Scraper.getReviews(this.url);
     }
 
-    public void getReviews(){
-        int reviewsOnPage = S;
-
-    }
 }

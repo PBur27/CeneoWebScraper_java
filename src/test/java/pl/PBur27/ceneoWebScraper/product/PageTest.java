@@ -11,6 +11,9 @@ public class PageTest {
             u.checkConnection();
             Page test = new Page(u);
 
+            //test.reviews.forEach(review -> System.out.println(review.reviewElement.toString()));
+            System.out.println(test.reviews.getFirst().reviewElement.toString());
+
             assert true;
         } catch (UrlErrorException | UrlRedirectException e) {
             assert  false;

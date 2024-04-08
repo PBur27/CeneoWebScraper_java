@@ -45,20 +45,24 @@ public class Scraper {
 
     public static ArrayList<Review> getReviews(Url u) {
 
-        ArrayList<Review> reviews;
-        int reviewsOnPage = u.response
-                .select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *")
-                .size();
+        ArrayList<Review> reviews = new ArrayList<>();
+        Elements reviewElements = u
+                .response
+                .select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *");
 
-        for (int i = 0; i < reviewsOnPage + 1; i++) {
+        for (int i = 0; i < reviewElements.size(); i++) {
 
-            reviews.add(u.response.select())
+            reviews.add(new Review(reviewElements.get(i)));
 
         }
 
-
-        return u.response.select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *");
-
+        return reviews;
 
     }
+
+    //public static int getOpinionId(Element reviewElement){
+        //return reviewElement.select()
+    //}
+
+
 }
