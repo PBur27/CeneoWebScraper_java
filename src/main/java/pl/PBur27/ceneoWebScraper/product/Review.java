@@ -1,6 +1,7 @@
 package pl.PBur27.ceneoWebScraper.product;
 
 import org.jsoup.nodes.Element;
+import pl.PBur27.ceneoWebScraper.app.Scraper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 public class Review {
 
     public Element reviewElement;
+    //to be deleted - move to constr
     int opinionId;
     String author;
     boolean recommendation;
@@ -22,7 +24,14 @@ public class Review {
     ArrayList<String> cons;
 
 
-    public Review(Element rE) {
-        this.reviewElement = rE;
+    public Review(Element reviewElement) {
+
+    this.reviewElement = reviewElement;
+
+    this.opinionId = Scraper.getOpinionId(reviewElement);
+    this.author = Scraper.getAuthor(reviewElement);
+    this.recommendation = Scraper.getRecommendation(reviewElement);
+
+
     }
 }

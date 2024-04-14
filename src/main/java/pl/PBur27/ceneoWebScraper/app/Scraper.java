@@ -8,6 +8,7 @@ import pl.PBur27.ceneoWebScraper.product.Url;
 import pl.PBur27.ceneoWebScraper.product.UrlErrorException;
 import pl.PBur27.ceneoWebScraper.product.UrlRedirectException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -50,19 +51,40 @@ public class Scraper {
                 .response
                 .select("#reviews > div > div.review-box-items-list.white.js_product-reviews.js_product-reviews-container > *");
 
-        for (int i = 0; i < reviewElements.size(); i++) {
+        for (Element reviewElement : reviewElements) {
 
-            reviews.add(new Review(reviewElements.get(i)));
+            reviews.add(new Review(reviewElement));
 
         }
 
         return reviews;
 
     }
+    /*
+    int opinionId;
+    String author;
+    boolean recommendation;
+    int score;
+    boolean purchased;
+    LocalDate publishDate;
+    LocalDate purchaseDate;
+    int thumbsUp;
+    int thumbsDown;
+    String content;
+    ArrayList<String> pros;
+    ArrayList<String> cons;
+    */
 
-    //public static int getOpinionId(Element reviewElement){
-        //return reviewElement.select()
-    //}
+    public static int getOpinionId(Element rE){
+        return Integer.parseInt(rE.select("div.js_review.review-box-item").attr("data-entry-id"));
+    }
 
+    public static String getAuthor(Element rE){
+        return rE.select("span.js_review-user-name").text();
+    }
+
+    public static boolean getRecommendation(Element rE){
+        return rE.select("span.uppercase.green-text").text() == "Polecam";
+    }
 
 }
