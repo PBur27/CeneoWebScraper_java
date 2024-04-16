@@ -65,7 +65,6 @@ public class Scraper {
     String author;
     boolean recommendation;
     int score;
-    boolean purchased;
     LocalDate publishDate;
     LocalDate purchaseDate;
     int thumbsUp;
@@ -84,7 +83,19 @@ public class Scraper {
     }
 
     public static boolean getRecommendation(Element rE){
-        return rE.select("span.uppercase.green-text").text() == "Polecam";
+        return rE.select("span.uppercase.green-text").text().equals("Polecam");
+    }
+
+    public static int getScore(Element rE){
+        return rE.select("span.score__meter").text().charAt(0);
+    }
+
+    public static LocalDate getPublishDate(Element rE){
+        return LocalDate.parse(rE.select("span.m-font-small > time").first().attr("datetime").split(" ",2)[0]);
+    }
+
+    public static LocalDate getPurchaseDate(Element rE){
+        return LocalDate.parse(rE.select("span.m-font-small > time").last().attr("datetime").split(" ",2)[0]);
     }
 
 }

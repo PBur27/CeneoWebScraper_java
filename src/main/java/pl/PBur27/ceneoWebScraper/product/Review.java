@@ -14,7 +14,6 @@ public class Review {
     String author;
     boolean recommendation;
     int score;
-    boolean purchased;
     LocalDate publishDate;
     LocalDate purchaseDate;
     int thumbsUp;
@@ -31,7 +30,9 @@ public class Review {
     this.opinionId = Scraper.getOpinionId(reviewElement);
     this.author = Scraper.getAuthor(reviewElement);
     this.recommendation = Scraper.getRecommendation(reviewElement);
-
+    this.score = Scraper.getScore(reviewElement);
+    this.publishDate = Scraper.getPublishDate(reviewElement);
+    this.purchaseDate = Scraper.getPurchaseDate(reviewElement);
 
     }
 }

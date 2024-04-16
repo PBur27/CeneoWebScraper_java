@@ -14,6 +14,9 @@ public class ReviewTest {
             System.out.println(test.reviews.getFirst().opinionId);
             System.out.println(test.reviews.getFirst().author);
             System.out.println(test.reviews.getFirst().recommendation);
+            System.out.println(test.reviews.getFirst().score);
+            System.out.println(test.reviews.getFirst().publishDate);
+            System.out.println(test.reviews.getFirst().purchaseDate);
         } catch (UrlRedirectException | UrlErrorException e) {
             assert false;
         }
