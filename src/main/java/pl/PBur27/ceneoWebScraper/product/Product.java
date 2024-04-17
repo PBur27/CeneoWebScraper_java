@@ -10,41 +10,15 @@ public class Product {
     Url productPageUrl;
     ArrayList<Page> pages = new ArrayList<>();
 
-    Product(String text) {
+    public Product(String text) {
         this.productPageUrl = new Url(text);
         try {
             this.productPageUrl.checkConnection();
-            this.setName();
-            this.getPages();
+            this.name = Scraper.getTitle(productPageUrl);
+            this.pages = Scraper.getPages(productPageUrl);
         } catch (UrlRedirectException | UrlErrorException e) {
             System.out.println("Error adding product");
-            //add exception??
         }
     }
-
-    void setName(){
-        this.name = Scraper.getTitle(productPageUrl);
-    }
-
-    void getPages(){
-        this.pages.add(new Page(productPageUrl));
-
-        boolean morePagesAvailable = true;
-        Url nextPageUrl = productPageUrl;
-
-        while (morePagesAvailable){
-            try {
-                nextPageUrl = Scraper.getNextUrl(nextPageUrl);
-                this.pages.add(new Page(nextPageUrl));
-
-            } catch (NoMoreReviewPagesException e) {
-                morePagesAvailable = false;
-            }
-        }
-
-    }
-
-
-
 
 }

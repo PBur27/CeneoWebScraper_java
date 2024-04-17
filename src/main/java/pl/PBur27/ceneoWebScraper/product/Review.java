@@ -33,6 +33,11 @@ public class Review {
     this.score = Scraper.getScore(reviewElement);
     this.publishDate = Scraper.getPublishDate(reviewElement);
     this.purchaseDate = Scraper.getPurchaseDate(reviewElement);
+    this.thumbsUp = Scraper.getThumbsUp(reviewElement);
+    this.thumbsDown = Scraper.getThumbsDown(reviewElement);
+    this.content = Scraper.getContent(reviewElement);
+    this.pros = Scraper.getPros(reviewElement);
+    this.cons = Scraper.getCons(reviewElement);
 
     }
 }
