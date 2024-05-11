@@ -5,15 +5,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class Url {
+public class Url implements Serializable {
 
     public String url;
-    public Document response;
+    public transient Document response;
     public Url(String text) {
         text = text.replaceAll("www.ceneo","m.ceneo");
         this.url = text;

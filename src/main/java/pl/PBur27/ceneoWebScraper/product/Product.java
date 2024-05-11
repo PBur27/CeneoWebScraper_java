@@ -3,10 +3,11 @@ package pl.PBur27.ceneoWebScraper.product;
 import pl.PBur27.ceneoWebScraper.app.NoMoreReviewPagesException;
 import pl.PBur27.ceneoWebScraper.app.Scraper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product {
-    String name;
+public class Product implements Serializable {
+    public String name;
     Url productPageUrl;
     ArrayList<Page> pages = new ArrayList<>();
 

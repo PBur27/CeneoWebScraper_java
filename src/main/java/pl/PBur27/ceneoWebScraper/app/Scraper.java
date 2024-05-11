@@ -38,7 +38,7 @@ public class Scraper {
     }
 
     public static String getTitle(Url u) {
-        return u.response.title();
+        return u.response.select("div.product-top-section__product-title > h1").text();
     }
 
     public static ArrayList<Page> getPages(Url u){

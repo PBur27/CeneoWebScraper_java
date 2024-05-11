@@ -11,7 +11,7 @@ public class ProductTest {
     void assignsProductName(){
         Product test = new Product("https://www.ceneo.pl/47885380#tab=reviews");
 
-        if (test.name.equals("Długopis Parker Jotter Stainless Steel GT 1953182 - Ceny i opinie - Ceneo.pl")){
+        if (test.name.equals("Długopis Parker Jotter Stainless Steel GT 1953182")){
             assert true;
         }
         else {
